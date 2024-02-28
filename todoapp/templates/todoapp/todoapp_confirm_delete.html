@@ -1,0 +1,18 @@
+
+{% extends 'todoapp/main.html' %}
+
+{% block content %}
+
+    <div class="header-bar">
+        <h1>Are you sure to delete "{{ lists.title }}"</h1>
+    </div>
+    <div class="card-body my-5 d-flex justify-content-between">
+        <a href="{% url 'lists' %}"><button class="button">Cancel</button></a>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Confirm" class="button">
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+
+{% extends 'todoapp/main.html' %}
+
+{% block content %}
+
+    <div class="header-bar">
+        <h1>Welcome!!</h1>
+    </div>
+    <div class="card-body my-5">
+        {% for list in lists %}
+            <div class="accordion" id="accordionExample">
+                    <div align="left" class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ list.id }}" aria-expanded="false" aria-controls="collapseTwo">
+                                    {% if list.complete == True %}
+                                    <strike>{{ list.title }}</strike>
+                                    {% else %}
+                                    <p>{{ list.title }}</p>
+                                    {% endif %}
+                                </button>
+                            </h2>
+                            <div id="{{ list.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div>{{ list.description }}</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h3><a href="{% url 'update-list' list.id %}" style="text-decoration: none; color: #f5e82f;">&#9998;</a></h3>
+                        <h3><a href="{% url 'delete-list' list.id %}" style="text-decoration: none; color: red;">&#10006;</a></h3>
+                    </div>
+                {% empty %}
+                <p>There is no Todo Lists</p>
+            </div>
+        {% endfor %}
+        <div class="py-5" align="right">
+            <a href="{% url 'create_list' %}" class="btn btn-warning" style="color: white;"><h1>&#10010;</h1></a>
+        </div>
+    </div>
+
+{% endblock %}
