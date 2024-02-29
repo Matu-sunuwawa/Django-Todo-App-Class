@@ -1,0 +1,20 @@
+
+{% extends 'todoapp/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="header-bar">
+        <h1>Welcome Make Your Day!</h1>
+    </div>
+    <div class="card-body my-5">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Register" class="button">
+        </form>
+        <br>
+        <p>Already Have Account???<a href="{% url 'login' %}">Login</a></p>
+    </div>
+
+{% endblock %}

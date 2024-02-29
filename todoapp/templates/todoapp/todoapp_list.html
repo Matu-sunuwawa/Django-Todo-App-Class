@@ -5,6 +5,17 @@
 
     <div class="header-bar">
         <h1>Welcome!!</h1>
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <input class="button" type="submit" value="Logout">
+            </form>
+        {% else %}
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input class="button" type="submit" value="Login">
+            </form>
+        {% endif %}
     </div>
     <div class="card-body my-5">
         {% for list in lists %}
